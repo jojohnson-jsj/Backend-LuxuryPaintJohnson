@@ -17,7 +17,7 @@ env:
   API_IMPORT_DLL: .\bin\Release\net8.0\LuxuryPaintJohnsonAPI.dll
   API_IMPORT_VERSION: v1
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 8.0.x
+  DOTNET_CORE_VERSION: 9.0.x
   WORKING_DIRECTORY: .
 jobs:
   build:
