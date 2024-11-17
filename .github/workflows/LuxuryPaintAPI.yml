@@ -33,18 +33,18 @@ jobs:
       with:
         dotnet-version: ${{ env.SWASHBUCKLE_DOTNET_CORE_VERSION }}
     - name: Restore
-      run: dotnet restore LuxuryPaintJohnson.sln
+      run: dotnet restore ${{ env.WORKING_DIRECTORY }}
     - name: Build
-      run: dotnet build LuxuryPaintJohnson.sln --configuration Release --no-restore
+      run: dotnet build ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-restore
     - name: Test
-      run: dotnet test LuxuryPaintJohnson.sln --no-build
+      run: dotnet test ${{ env.WORKING_DIRECTORY }} --no-build
     - name: Publish
-      run: dotnet publish LuxuryPaintJohnson.sln --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      run: dotnet publish ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
     - name: Install Swashbuckle CLI .NET Global Tool
       run: dotnet tool install --global Swashbuckle.AspNetCore.Cli --version ${{ env.SWASHBUCLE_ASPNET_CORE_CLI_PACKAGE_VERSION }}
       working-directory: ${{ env.WORKING_DIRECTORY }}
     - name: Generate Open API Specification Document
-      run: swagger tofile --startup "Program" --output "${{ env.API_IMPORT_SPECIFICATION_PATH }}" "${{ env.API_IMPORT_DLL }}" "${{ env.API_IMPORT_VERSION }}"
+      run: swagger tofile --output "${{ env.API_IMPORT_SPECIFICATION_PATH }}" "${{ env.API_IMPORT_DLL }}" "${{ env.API_IMPORT_VERSION }}"
     - name: Publish Artifacts
       uses: actions/upload-artifact@v4
       with:

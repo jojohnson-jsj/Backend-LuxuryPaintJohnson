@@ -41,7 +41,15 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+	c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+	{
+		Title = "LuxuryPaintJohnsonAPI",
+		Version = "v1"
+	});
+});
 
 var app = builder.Build();
 
