@@ -35,7 +35,7 @@ jobs:
     - name: Restore
       run: dotnet restore LuxuryPaintJohnson.sln
     - name: Build
-      run: dotnet build ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-restore
+      run: dotnet build LuxuryPaintJohnson.sln --configuration Release --no-restore
     - name: Test
       run: dotnet test ${{ env.WORKING_DIRECTORY }} --no-build
     - name: Publish
