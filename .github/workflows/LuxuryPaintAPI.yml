@@ -1,8 +1,9 @@
 name: Build and deploy .NET Core application to Web App LuxuryPaintAPI with API Management Service LuxuryPaintJohnsonAPIapi-LuxuryPaintJohnsonAPI
 on:
+  workflow_dispatch:
   push:
     branches:
-    - main
+      - main
 env:
   AZURE_WEBAPP_NAME: LuxuryPaintAPI
   AZURE_WEBAPP_PACKAGE_PATH: .\publish
